@@ -61,7 +61,7 @@ function setup(webContents, {throwErrors} = {}) {
         send(TOKEN_UPDATED, credentials.fcm.token);
       }
       // Listen for GCM/FCM notifications
-      let cleint = await listen(Object.assign({}, credentials, { persistentIds }), onNotification(webContents));
+      let client = await listen(Object.assign({}, credentials, { persistentIds }), onNotification(webContents));
       client.on('parserError', error => {
         console.error('PUSH_RECEIVER:::Error from parser', error);
         send(NOTIFICATION_SERVICE_ERROR, error.message);
